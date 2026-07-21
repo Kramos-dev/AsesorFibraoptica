@@ -111,15 +111,15 @@
     --wc-form-border-width:1px;
 
     /* --- Paleta visual activa (inspirada en el sitio de referencia): morado + rojo --- */
-    --purple:#7C2AE8;
-    --purple-deep:#4B1478;
-    --red:#E0173B;
-    --red-section:#C6203E;
-    --red-section-deep:#7A0F28;
+    --purple:#872F98;
+    --purple-deep:#5B1F66;
+    --red:#FF0044;
+    --red-section:#E4003A;
+    --red-section-deep:#7A0022;
 
     /* --- Tokens del sitio --- */
     --blue:var(--purple);
-    --deep:#160B22; /* casi negro con tinte morado, para encabezados sobre fondo claro */
+    --deep:#1E0F22; /* casi negro con tinte morado (derivado de #872F98), para encabezados sobre fondo claro */
     --cyan:var(--purple-deep);
     --white:#FFFFFF;
     --gray-bg:#F7F5FA;
@@ -129,7 +129,7 @@
     --radius-lg:20px;
     --radius-md:14px;
     --shadow:0 10px 30px rgba(22,11,34,0.10);
-    --shadow-hover:0 16px 40px rgba(124,42,232,0.20);
+    --shadow-hover:0 16px 40px rgba(135,47,152,0.20);
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -158,7 +158,7 @@
     display:inline-flex;align-items:center;gap:8px;
     font-size:13px;font-weight:700;letter-spacing:.06em;
     text-transform:uppercase;color:var(--blue);
-    background:rgba(114,14,236,0.08);
+    background:rgba(135,47,152,0.08);
     padding:6px 14px;border-radius:100px;
     margin-bottom:16px;
   }
@@ -175,9 +175,9 @@
   }
   .btn-primary{
     background:var(--red);border-radius:10px;
-    color:#fff;box-shadow:0 10px 24px rgba(224,23,59,0.32);
+    color:#fff;box-shadow:0 10px 24px rgba(255,0,68,0.32);
   }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(224,23,59,0.4);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(255,0,68,0.4);}
   .btn-outline{
     background:#fff;color:var(--deep);border:var(--wc-form-border-width) solid var(--wc-secondary);
   }
@@ -243,7 +243,12 @@
     background:linear-gradient(120deg,var(--purple) 0%, var(--purple) 55%, var(--purple-deep) 100%);
     overflow:hidden;
   }
-  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .hero-single{max-width:760px;margin:0 auto;text-align:center;}
+  .hero-single .eyebrow{margin-left:auto;margin-right:auto;}
+  .hero-single .hero-sub{margin-left:auto;margin-right:auto;text-align:center;}
+  .hero-single .hero-ctas{justify-content:center;}
+  .hero-single .hero-trust{justify-content:center;}
+  .hero-single .speed-card{margin:34px 0;text-align:left;}
   .hero h1{font-size:46px;font-weight:800;letter-spacing:-0.02em;margin-bottom:18px;color:#fff;}
   .hero h1 em{font-style:normal;}
   .hero-sub{font-size:17px;color:rgba(255,255,255,0.82);max-width:520px;margin-bottom:30px;}
@@ -256,30 +261,66 @@
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.18);
     backdrop-filter:blur(6px);
-    border-radius:28px;padding:34px;color:#fff;position:relative;overflow:hidden;
-    box-shadow:0 24px 60px rgba(22,11,34,0.35);
+    border-radius:32px;padding:44px 40px;color:#fff;position:relative;overflow:hidden;
+    box-shadow:0 30px 70px rgba(22,11,34,0.4);
+    min-height:560px;display:flex;flex-direction:column;
   }
   .speed-card::before{
     content:'';position:absolute;inset:0;
     background:radial-gradient(circle at 100% 0%, rgba(255,255,255,0.14), transparent 60%);
   }
-  .speed-top{display:flex;justify-content:space-between;align-items:center;position:relative;margin-bottom:22px;}
-  .speed-top .pill{background:rgba(255,255,255,0.16);padding:6px 12px;border-radius:100px;font-size:12px;font-weight:700;color:#fff;}
-  .speed-number{position:relative;font-family:'Poppins',sans-serif;font-weight:800;font-size:74px;line-height:1;letter-spacing:-0.02em;}
+  .speed-card::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size:26px 26px;opacity:.5;
+  }
+  .speed-top{display:flex;justify-content:space-between;align-items:center;position:relative;margin-bottom:24px;}
+  .speed-top .pill{
+    display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.16);
+    padding:8px 16px;border-radius:100px;font-size:12.5px;font-weight:800;color:#fff;letter-spacing:.02em;
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .speed-top .icon-badge{
+    width:50px;height:50px;border-radius:14px;background:rgba(255,255,255,0.14);
+    border:1px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .speed-top .icon-badge svg{width:24px;height:24px;}
+  .speed-number{position:relative;font-family:'Poppins',sans-serif;font-weight:800;font-size:80px;line-height:1;letter-spacing:-0.02em;transition:opacity .3s ease, transform .3s ease;}
   .speed-number span{font-size:26px;font-weight:700;color:#fff;opacity:.8;}
-  .speed-label{position:relative;font-size:14px;color:rgba(255,255,255,0.75);margin-top:6px;margin-bottom:26px;}
-  .speed-bars{position:relative;display:flex;gap:5px;align-items:flex-end;height:54px;margin-bottom:26px;}
-  .speed-bars i{flex:1;background:linear-gradient(180deg,#fff,rgba(255,255,255,0.35));border-radius:6px 6px 0 0;opacity:.85;animation:pulseBar 1.8s ease-in-out infinite;}
-  .speed-bars i:nth-child(1){height:35%;animation-delay:.0s;}
-  .speed-bars i:nth-child(2){height:60%;animation-delay:.15s;}
-  .speed-bars i:nth-child(3){height:100%;animation-delay:.3s;}
-  .speed-bars i:nth-child(4){height:75%;animation-delay:.45s;}
-  .speed-bars i:nth-child(5){height:50%;animation-delay:.6s;}
-  .speed-bars i:nth-child(6){height:88%;animation-delay:.75s;}
-  .speed-bars i:nth-child(7){height:64%;animation-delay:.9s;}
-  .speed-bars i:nth-child(8){height:40%;animation-delay:1.05s;}
+  .speed-label{position:relative;font-size:15px;font-weight:600;color:rgba(255,255,255,0.8);margin-top:8px;margin-bottom:22px;transition:opacity .3s ease;}
+  .price-row{
+    position:relative;display:flex;align-items:baseline;gap:12px;margin-bottom:24px;
+    padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,0.15);
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .price-old{font-size:16px;color:rgba(255,255,255,0.5);text-decoration:line-through;}
+  .price-now{font-family:'Poppins',sans-serif;font-size:38px;font-weight:800;color:#fff;}
+  .price-now sup{font-size:14px;font-weight:600;color:rgba(255,255,255,0.7);margin-left:4px;}
+  .speed-bars{position:relative;display:flex;gap:5px;align-items:flex-end;height:50px;margin-bottom:24px;}
+  .speed-bars i{flex:1;background:linear-gradient(180deg,#fff,rgba(255,255,255,0.35));border-radius:6px 6px 0 0;opacity:.85;animation:pulseBar 1.8s ease-in-out infinite;transition:height .5s ease;}
+  .speed-bars i:nth-child(1){animation-delay:.0s;}
+  .speed-bars i:nth-child(2){animation-delay:.15s;}
+  .speed-bars i:nth-child(3){animation-delay:.3s;}
+  .speed-bars i:nth-child(4){animation-delay:.45s;}
+  .speed-bars i:nth-child(5){animation-delay:.6s;}
+  .speed-bars i:nth-child(6){animation-delay:.75s;}
+  .speed-bars i:nth-child(7){animation-delay:.9s;}
+  .speed-bars i:nth-child(8){animation-delay:1.05s;}
+  .benefit-list{position:relative;list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:24px;flex-grow:1;transition:opacity .3s ease, transform .3s ease;}
+  .benefit-list li{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:rgba(255,255,255,0.92);}
+  .benefit-list li svg{width:18px;height:18px;flex-shrink:0;}
+  .speed-foot{position:relative;display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:rgba(255,255,255,0.6);border-top:1px solid rgba(255,255,255,0.15);padding-top:18px;}
+  .card-dots{display:flex;gap:7px;}
+  .card-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.3);transition:background .3s, transform .3s;}
+  .card-dots span.active{background:#fff;transform:scale(1.4);}
+  .card-fade .speed-top .pill,
+  .card-fade .speed-top .icon-badge,
+  .card-fade .speed-number,
+  .card-fade .speed-label,
+  .card-fade .price-row,
+  .card-fade .benefit-list{opacity:0;transform:translateY(10px);}
   @keyframes pulseBar{0%,100%{opacity:.55;}50%{opacity:1;}}
-  .speed-foot{position:relative;display:flex;justify-content:space-between;font-size:12.5px;color:rgba(255,255,255,0.65);border-top:1px solid rgba(255,255,255,0.15);padding-top:16px;}
 
   @media (prefers-reduced-motion:reduce){
     .speed-bars i{animation:none;opacity:.9;}
@@ -328,7 +369,7 @@
     background:var(--purple);
     color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;
     padding:6px 16px;border-radius:100px;white-space:nowrap;
-    box-shadow:0 6px 14px rgba(124,42,232,0.45);
+    box-shadow:0 6px 14px rgba(135,47,152,0.45);
   }
   .offer-tag{
     display:inline-block;background:var(--wc-highlight);color:var(--wc-highligh-text);
@@ -456,7 +497,6 @@
 
   /* ---------- MOBILE ---------- */
   @media (max-width:1024px){
-    .hero-grid{grid-template-columns:1fr;}
     .benefits-grid{grid-template-columns:repeat(2,1fr);}
     .plans-grid{grid-template-columns:repeat(2,1fr);}
     .coverage-wrap{grid-template-columns:1fr;}
@@ -481,11 +521,6 @@
 </head>
 <body>
 
-<!-- ================= MARQUEE URGENCY BAR ================= -->
-<div class="marquee-bar" role="marquing" aria-hidden="true">
-  <div class="marquee-track" id="marqueeTrack"></div>
-</div>
-
 <!-- ================= HEADER ================= -->
 <header>
   <div class="nav-wrap container">
@@ -497,7 +532,7 @@
     </a>
     <nav class="links">
       <a href="#planes">Planes Internet + TV</a>
-      <a href="#internet">Solo Internet</a>
+      <a href="#planes" onclick="document.querySelector('.tab-btn[data-tab=internet]').click()">Solo Internet</a>
       <a href="#cobertura">Cobertura</a>
       <a href="#testimonios">Testimonios</a>
       <a href="#faq">Preguntas</a>
@@ -515,43 +550,52 @@
   </div>
 </header>
 
+<!-- ================= MARQUEE URGENCY BAR ================= -->
+<div class="marquee-bar" role="marquing" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
 <!-- ================= HERO ================= -->
 <main id="top">
 <section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow urgent"></div>
-      <h1>Internet Fibra Óptica <span class="gradient-text">de alta velocidad</span> y Televisión Digital HD en Costa Rica</h1>
-      <p class="hero-sub">Navegá, teletrabajá y disfrutá streaming sin interrupciones con <strong>internet simétrico por fibra óptica</strong>. Cotización personalizada por <strong>WhatsApp en minutos</strong> y agenda de instalación esta semana, sujeto a cobertura y disponibilidad en tu sector.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-whatsapp" href="https://wa.me/50600000000?text=Hola%2C%20quiero%20cotizar%20un%20plan%20de%20Internet%20Fibra%20%C3%93ptica%20y%20Televisi%C3%B3n%20Digital" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.1a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 1 1 12 20.1Zm4.4-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8.9-.2.2-.3.2-.5.1-.2-.1-1.1-.4-2-1.3-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3Z"/></svg>
-          Cotizar por WhatsApp
-        </a>
-        <a class="btn btn-outline" href="tel:+50600000000">📞 Llamada directa 24/7</a>
+  <div class="container hero-single">
+    <div class="eyebrow urgent">🔥 Promoción activa esta semana · Cupos limitados por zona</div>
+    <h1>Internet Fibra Óptica <span class="gradient-text">de alta velocidad</span> y Televisión Digital HD para todo Costa Rica</h1>
+    <p class="hero-sub">Navegá, teletrabajá y disfrutá streaming sin interrupciones con <strong>internet simétrico por fibra óptica</strong>. Cotización personalizada por <strong>WhatsApp en minutos</strong> y agenda de instalación esta semana, sujeto a cobertura y disponibilidad en tu sector.</p>
+
+    <div class="speed-card" id="planShowcase">
+      <div class="speed-top">
+        <span class="pill" id="showcasePill">● PLAN EXPERTO</span>
+        <div class="icon-badge" id="showcaseIcon"></div>
       </div>
-      <div class="hero-trust">
-        <div>⚡ Internet simétrico real</div>
-        <div>🛠️ Instalación rápida</div>
-        <div>🇨🇷 Cobertura nacional</div>
-        <div>🎧 Asesor directo 24/7</div>
+      <div class="speed-number"><span id="speedCounter">0</span><span> Mbps</span></div>
+      <div class="speed-label" id="showcaseLabel">+ Televisión Digital HD incluida</div>
+      <div class="price-row">
+        <span class="price-old" id="showcasePriceOld"></span>
+        <span class="price-now" id="showcasePriceNow">₡ 55,990<sup>/mes i.i.</sup></span>
+      </div>
+      <div class="speed-bars" id="showcaseBars">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <ul class="benefit-list" id="showcaseBenefits"></ul>
+      <div class="speed-foot">
+        <span>Descarga y subida iguales</span>
+        <div class="card-dots" id="showcaseDots"></div>
       </div>
     </div>
 
-    <div class="speed-card">
-      <div class="speed-top">
-        <span class="pill">● VELOCIDAD EN VIVO</span>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M2 8.5C8 3 16 3 22 8.5" stroke="#00AEEF" stroke-width="2" stroke-linecap="round"/><path d="M5.5 12.5C9.5 9 14.5 9 18.5 12.5" stroke="#00AEEF" stroke-width="2" stroke-linecap="round"/><path d="M9 16.5C10.8 15 13.2 15 15 16.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-      </div>
-      <div class="speed-number"><span id="speedCounter">0</span><span> Mbps</span></div>
-      <div class="speed-label">Velocidad simétrica disponible en el plan Experto</div>
-      <div class="speed-bars">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-      </div>
-      <div class="speed-foot">
-        <span>Descarga y subida iguales</span>
-        <span>Sin caídas en hora pico</span>
-      </div>
+    <div class="hero-ctas">
+      <a class="btn btn-whatsapp" href="https://wa.me/50600000000?text=Hola%2C%20quiero%20cotizar%20un%20plan%20de%20Internet%20Fibra%20%C3%93ptica%20y%20Televisi%C3%B3n%20Digital" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.1a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 1 1 12 20.1Zm4.4-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8.9-.2.2-.3.2-.5.1-.2-.1-1.1-.4-2-1.3-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3Z"/></svg>
+        Cotizar por WhatsApp
+      </a>
+      <a class="btn btn-outline" href="tel:+50600000000">📞 Llamada directa 24/7</a>
+    </div>
+    <div class="hero-trust">
+      <div>⚡ Internet simétrico real</div>
+      <div>🛠️ Instalación rápida</div>
+      <div>🇨🇷 Cobertura nacional</div>
+      <div>🎧 Asesor directo 24/7</div>
     </div>
   </div>
 </section>
@@ -608,7 +652,7 @@
       <div class="plans-grid">
 
         <div class="plan-card">
-          <div class="plan-photo" style="background:linear-gradient(135deg,#2B0A66,#7C2AE8);">🎮</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#3B1240,#872F98);">🎮</div>
           <div class="plan-speed">1000<span>Mbps + TV</span></div>
           <div class="plan-name">Experto</div>
           <div class="plan-price">₡ 55,990.00 <sup>/mes i.i.</sup></div>
@@ -618,7 +662,7 @@
         </div>
 
         <div class="plan-card">
-          <div class="plan-photo" style="background:linear-gradient(135deg,#3B1E6E,#5B3FA6);">💼</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#5B1F66,#872F98);">💼</div>
           <div class="plan-speed">750<span>Mbps + TV</span></div>
           <div class="plan-name">Avanzado</div>
           <div class="plan-price">₡ 39,990.00 <sup>/mes i.i.</sup></div>
@@ -629,7 +673,7 @@
 
         <div class="plan-card featured">
           <div class="badge-recommended">★ Recomendado</div>
-          <div class="plan-photo" style="background:linear-gradient(135deg,#7C2AE8,#B57BF2);">👨‍👩‍👧</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#872F98,#C874DA);">👨‍👩‍👧</div>
           <div class="plan-speed">500<span>Mbps + TV</span></div>
           <div class="plan-name">Ideal</div>
           <div class="plan-price-old">₡ 33,990.00 <span class="offer-tag">Oferta</span></div>
@@ -640,7 +684,7 @@
         </div>
 
         <div class="plan-card">
-          <div class="plan-photo" style="background:linear-gradient(135deg,#8E1130,#C6203E);">👩‍💻</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#7A0022,#E4003A);">👩‍💻</div>
           <div class="plan-speed">300<span>Mbps + TV</span></div>
           <div class="plan-name">Estándar</div>
           <div class="plan-price">₡ 29,990.00 <sup>/mes i.i.</sup></div>
@@ -650,7 +694,7 @@
         </div>
 
         <div class="plan-card">
-          <div class="plan-photo" style="background:linear-gradient(135deg,#4B1478,#7C2AE8);">👴👵</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#5B1F66,#872F98);">👴👵</div>
           <div class="plan-speed">150<span>Mbps + TV</span></div>
           <div class="plan-name">Básico</div>
           <div class="plan-price">₡ 25,990.00 <sup>/mes i.i.</sup></div>
@@ -668,10 +712,10 @@
 
     <!-- TAB: SOLO INTERNET -->
     <div class="tab-panel" id="tab-internet">
-      <div class="plans-grid" id="internet">
+      <div class="plans-grid" id="internet-grid">
 
         <div class="plan-card">
-          <div class="plan-photo" style="background:linear-gradient(135deg,#2B0A66,#7C2AE8);">🎮</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#3B1240,#872F98);">🎮</div>
           <div class="plan-speed">1000<span>Mbps</span></div>
           <div class="plan-name">Experto</div>
           <div class="plan-price">₡ 39,990.00 <sup>/mes i.i.</sup></div>
@@ -680,7 +724,7 @@
         </div>
 
         <div class="plan-card">
-          <div class="plan-photo" style="background:linear-gradient(135deg,#3B1E6E,#5B3FA6);">💼</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#5B1F66,#872F98);">💼</div>
           <div class="plan-speed">750<span>Mbps</span></div>
           <div class="plan-name">Avanzado</div>
           <div class="plan-price-old">₡ 31,990.00 <span class="offer-tag">Oferta</span></div>
@@ -691,7 +735,7 @@
 
         <div class="plan-card featured">
           <div class="badge-recommended">★ Recomendado</div>
-          <div class="plan-photo" style="background:linear-gradient(135deg,#7C2AE8,#B57BF2);">👨‍👩‍👧</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#872F98,#C874DA);">👨‍👩‍👧</div>
           <div class="plan-speed">600<span>Mbps</span></div>
           <div class="plan-name">Ideal</div>
           <div class="plan-price-old">₡ 28,990.00 <span class="offer-tag">Oferta</span></div>
@@ -701,7 +745,7 @@
         </div>
 
         <div class="plan-card">
-          <div class="plan-photo" style="background:linear-gradient(135deg,#8E1130,#C6203E);">👩‍💻</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#7A0022,#E4003A);">👩‍💻</div>
           <div class="plan-speed">350<span>Mbps</span></div>
           <div class="plan-name">Estándar</div>
           <div class="plan-price">₡ 25,990.00 <sup>/mes i.i.</sup></div>
@@ -710,7 +754,7 @@
         </div>
 
         <div class="plan-card">
-          <div class="plan-photo" style="background:linear-gradient(135deg,#4B1478,#7C2AE8);">👴👵</div>
+          <div class="plan-photo" style="background:linear-gradient(135deg,#5B1F66,#872F98);">👴👵</div>
           <div class="plan-speed">150<span>Mbps</span></div>
           <div class="plan-name">Básico</div>
           <div class="plan-price">₡ 22,990.00 <sup>/mes i.i.</sup></div>
@@ -859,7 +903,7 @@
         <h4>Planes</h4>
         <ul>
           <li><a href="#planes">Internet + TV</a></li>
-          <li><a href="#internet">Solo Internet</a></li>
+          <li><a href="#planes" onclick="document.querySelector('.tab-btn[data-tab=internet]').click()">Solo Internet</a></li>
           <li><a href="#cobertura">Cobertura</a></li>
           <li><a href="https://telecablecr.com/catalogo-lineup" target="_blank" rel="noopener">Catálogo completo</a></li>
         </ul>
@@ -931,28 +975,110 @@
     });
   });
 
-  // Animated speed counter in hero
-  const counterEl = document.getElementById('speedCounter');
-  let started = false;
-  const animateCounter = () => {
-    if (started) return;
-    started = true;
-    let val = 0;
-    const target = 1000;
-    const step = () => {
-      val += Math.ceil((target - val) / 8) || 1;
-      if (val >= target) { val = target; counterEl.textContent = val; return; }
-      counterEl.textContent = val;
-      requestAnimationFrame(step);
-    };
-    step();
+  // Plan showcase: big rotating card in the hero with speed, price and benefits
+  const showcasePlans = [
+    {
+      pill: '● PLAN EXPERTO', speed: 1000, label: '+ Televisión Digital HD incluida',
+      priceOld: null, priceNow: '₡ 55,990',
+      icon: 'gamepad',
+      benefits: ['Ideal para gaming y streaming 4K', 'Hasta 15 dispositivos conectados', 'Soporte prioritario 24/7']
+    },
+    {
+      pill: '● PLAN AVANZADO', speed: 750, label: '+ Televisión Digital HD incluida',
+      priceOld: null, priceNow: '₡ 39,990',
+      icon: 'briefcase',
+      benefits: ['Ideal para teletrabajo y estudio', 'Hasta 10 dispositivos conectados', 'Instalación en 24-48h']
+    },
+    {
+      pill: '★ PLAN IDEAL · RECOMENDADO', speed: 500, label: '+ Televisión Digital HD incluida',
+      priceOld: '₡ 33,990', priceNow: '₡ 31,990',
+      icon: 'home',
+      benefits: ['El más elegido en Costa Rica', 'Hasta 8 dispositivos conectados', 'Precio promocional este mes']
+    },
+    {
+      pill: '● PLAN ESTÁNDAR', speed: 300, label: '+ Televisión Digital HD incluida',
+      priceOld: null, priceNow: '₡ 29,990',
+      icon: 'play',
+      benefits: ['Perfecto para navegar y redes sociales', 'Hasta 6 dispositivos conectados', 'Instalación rápida']
+    },
+    {
+      pill: '● PLAN BÁSICO', speed: 150, label: '+ Televisión Digital HD incluida',
+      priceOld: null, priceNow: '₡ 25,990',
+      icon: 'signal',
+      benefits: ['Ideal para uso diario en el hogar', 'Hasta 4 dispositivos conectados', 'Soporte 24/7']
+    }
+  ];
+  const showcaseIcons = {
+    gamepad: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h4M8 10v4"/><circle cx="16.5" cy="10.5" r="1"/><circle cx="18.5" cy="13" r="1"/><path d="M7.5 6h9a5 5 0 0 1 5 5v3a3.5 3.5 0 0 1-6.4 2L14 15H10l-1.1 1a3.5 3.5 0 0 1-6.4-2v-3a5 5 0 0 1 5-5Z"/></svg>',
+    briefcase: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M8 7.5V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5"/><path d="M3 13h18"/></svg>',
+    home: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></svg>',
+    play: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M9 21h6M12 17v4"/><path d="m10.5 8.5 3.5 2-3.5 2Z" fill="#fff"/></svg>',
+    signal: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h.01M9 18v-3M14 18v-6M19 18V7"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17l11-11"/></svg>'
   };
-  const speedCard = document.querySelector('.speed-card');
-  if (speedCard) {
+
+  const showcaseEl = document.getElementById('planShowcase');
+  const pillEl = document.getElementById('showcasePill');
+  const iconEl = document.getElementById('showcaseIcon');
+  const counterEl = document.getElementById('speedCounter');
+  const labelEl = document.getElementById('showcaseLabel');
+  const priceOldEl = document.getElementById('showcasePriceOld');
+  const priceNowEl = document.getElementById('showcasePriceNow');
+  const barsEl = document.getElementById('showcaseBars');
+  const benefitsEl = document.getElementById('showcaseBenefits');
+  const dotsEl = document.getElementById('showcaseDots');
+
+  if (showcaseEl && pillEl && iconEl && counterEl && barsEl && benefitsEl && dotsEl) {
+    dotsEl.innerHTML = showcasePlans.map((_, i) => `<span class="${i === 0 ? 'active' : ''}"></span>`).join('');
+
+    const animateCounterTo = (target) => {
+      let val = 0;
+      const step = () => {
+        val += Math.ceil((target - val) / 8) || 1;
+        if (val >= target) { counterEl.textContent = target; return; }
+        counterEl.textContent = val;
+        requestAnimationFrame(step);
+      };
+      step();
+    };
+
+    const paintShowcase = (i) => {
+      const plan = showcasePlans[i];
+      pillEl.textContent = plan.pill;
+      iconEl.innerHTML = showcaseIcons[plan.icon];
+      labelEl.textContent = plan.label;
+      priceOldEl.textContent = plan.priceOld || '';
+      priceNowEl.innerHTML = plan.priceNow + '<sup>/mes i.i.</sup>';
+      benefitsEl.innerHTML = plan.benefits.map(b => `<li>${showcaseIcons.check}<span>${b}</span></li>`).join('');
+      const maxSpeed = 1000;
+      const bars = barsEl.querySelectorAll('i');
+      const pattern = [0.55, 0.8, 1, 0.7, 0.6, 0.9, 0.65, 0.45];
+      const ratio = Math.max(plan.speed / maxSpeed, 0.35);
+      bars.forEach((bar, bi) => { bar.style.height = Math.round(pattern[bi] * ratio * 100) + '%'; });
+      counterEl.textContent = '0';
+      animateCounterTo(plan.speed);
+      [...dotsEl.children].forEach((dot, di) => dot.classList.toggle('active', di === i));
+    };
+
+    let showcaseIndex = 0;
+    let showcaseStarted = false;
+    const startShowcase = () => {
+      if (showcaseStarted) return;
+      showcaseStarted = true;
+      paintShowcase(0);
+      setInterval(() => {
+        showcaseEl.classList.add('card-fade');
+        setTimeout(() => {
+          showcaseIndex = (showcaseIndex + 1) % showcasePlans.length;
+          paintShowcase(showcaseIndex);
+          showcaseEl.classList.remove('card-fade');
+        }, 350);
+      }, 4000);
+    };
     const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) animateCounter(); });
-    }, { threshold: 0.4 });
-    io.observe(speedCard);
+      entries.forEach(e => { if (e.isIntersecting) startShowcase(); });
+    }, { threshold: 0.3 });
+    io.observe(showcaseEl);
   }
 
   // Mobile menu (simple toggle of nav links)
